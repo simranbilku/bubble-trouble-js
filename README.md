@@ -6,8 +6,8 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
 
 ## HTML
 
-- [ ] Set up a <canvas> element
-- [ ] Viewport meta tag
+- [x] Set up a <canvas> element
+- [x] Viewport meta tag
 - [ ] Shoot button
 - [ ] Left movement button
 - [ ] Right movement button
@@ -24,9 +24,9 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
 
 ## JS Logic
 
-- [ ] Render canvas
-  - [ ] Adjust canvas to window size
-- [ ] Set up Game Loop
+- [x] Render canvas
+  - [x] Adjust canvas to window size
+- [x] Set up Game Loop
   - [ ] Create player object with x, y, width and height
   - [ ] Draw a rectangle on canvas
     - [ ] Later, change to stickman drawn with circle and lines.
