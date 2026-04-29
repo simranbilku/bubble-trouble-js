@@ -17,6 +17,7 @@ const player = {
 
 player.x = (canvas.width - player.width) / 2;
 player.y = canvas.height - player.height;
+player.speed = 3;
 
 function drawRectangle() {
   ctx.beginPath();
@@ -26,8 +27,71 @@ function drawRectangle() {
   ctx.stroke();
 }
 
+const buttonTracker = {
+  left: false,
+  right: false,
+};
+
+const left = document.getElementById("leftBtn");
+left.addEventListener("mousedown", function () {
+  buttonTracker.left = true;
+});
+left.addEventListener("mouseup", function () {
+  buttonTracker.left = false;
+});
+left.addEventListener("touchstart", function () {
+  buttonTracker.left = true;
+});
+left.addEventListener("touchend", function () {
+  buttonTracker.left = false;
+});
+
+const right = document.getElementById("rightBtn");
+right.addEventListener("mousedown", function () {
+  buttonTracker.right = true;
+});
+right.addEventListener("mouseup", function () {
+  buttonTracker.right = false;
+});
+right.addEventListener("touchstart", function () {
+  buttonTracker.right = true;
+});
+right.addEventListener("touchend", function () {
+  buttonTracker.right = false;
+});
+
+window.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowLeft") {
+    buttonTracker.left = true;
+    event.preventDefault();
+  } else if (event.key === "ArrowRight") {
+    buttonTracker.right = true;
+    event.preventDefault();
+  }
+});
+
+window.addEventListener("keyup", function (event) {
+  if (event.key === "ArrowLeft") {
+    buttonTracker.left = false;
+  } else if (event.key === "ArrowRight") {
+    buttonTracker.right = false;
+  }
+});
+
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
+  if (buttonTracker.left) {
+    player.x -= player.speed;
+    if (player.x < 0) {
+      player.x = 0;
+    }
+  }
+  if (buttonTracker.right) {
+    player.x += player.speed;
+    if (player.x > canvas.width - player.width) {
+      player.x = canvas.width - player.width;
+    }
+  }
   drawRectangle();
   requestAnimationFrame(gameLoop);
 }

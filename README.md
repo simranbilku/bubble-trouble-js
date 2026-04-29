@@ -27,8 +27,8 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
 - [x] Render canvas
   - [x] Adjust canvas to window size
 - [x] Set up Game Loop
-  - [ ] Create player object with x, y, width and height
-  - [ ] Draw a rectangle on canvas
+  - [x] Create player object with x, y, width and height
+  - [x] Draw a rectangle on canvas
     - [ ] Later, change to stickman drawn with circle and lines.
   - [ ] Player object moves left and right within canvas bounds using left/right button or left/right keyboard arrow keys
   - [ ] Create an array of bubble objects. Each has x, y, radius and an x/y speed
