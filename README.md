@@ -36,9 +36,9 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
     - [x] Bubbles move downwards each frame
     - [x] Bubble objects bounce off the left and right walls, and off the floor (reverse y direction)
     - [x] Starts with one large bubble
-  - [ ] When shoot button/space is pressed, create a laser at player's x position that travels upwards
-    - [ ] Remove laser when it hits the top
-    - [ ] Player can only have one laser at a time
+  - [x] When shoot button/space is pressed, create a laser at player's x position that travels upwards
+    - [x] Remove laser when space is released
+    - [x] Player can only have one laser at a time
   - [ ] Each frame, check if the laser overlaps any bubble circle
     - [ ] If it does, remove that bubble and replace it with two smaller bubbles bouncing in opposite directions
     - [ ] Add a point

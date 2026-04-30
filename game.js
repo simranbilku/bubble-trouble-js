@@ -117,7 +117,7 @@ function randomXPosition() {
   );
 }
 
-const bubbles = [
+let bubbles = [
   {
     x: randomXPosition(),
     y: largeRadius,
@@ -189,10 +189,25 @@ function gameLoop() {
     laser.active = false;
   }
   if (laser.active) {
+    laser.x = player.x + player.width / 2;
     drawLaser();
+  }
+  if (laser.active) {
+    bubbles = bubbles.filter((bubble) => {
+      if (
+        laser.x > bubble.x - bubble.radius &&
+        laser.x < bubble.x + bubble.radius
+      ) {
+        return false;
+      }
+      return true;
+    });
   }
   drawRectangle();
   drawBubbles();
   requestAnimationFrame(gameLoop);
 }
 requestAnimationFrame(gameLoop);
+
+// Each frame, check if the laser overlaps any bubble circle
+//If it does, remove that bubble and replace it with two smaller bubbles bouncing in opposite directions
