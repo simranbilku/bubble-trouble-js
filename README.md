@@ -6,13 +6,13 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
 
 ## HTML
 
-- [x] Set up a <canvas> element
+- [x] Set up a canvas element
 - [x] Viewport meta tag
-- [ ] Shoot button
-- [ ] Left movement button
-- [ ] Right movement button
+- [x] Shoot button
+- [x] Left movement button
+- [x] Right movement button
 - [ ] Restart button
-- [ ] Bubble Trouble Title
+- [x] Bubble Trouble Title
 
 ## CSS
 
@@ -30,9 +30,9 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
   - [x] Create player object with x, y, width and height
   - [x] Draw a rectangle on canvas
     - [ ] Later, change to stickman drawn with circle and lines.
-  - [ ] Player object moves left and right within canvas bounds using left/right button or left/right keyboard arrow keys
-  - [ ] Create an array of bubble objects. Each has x, y, radius and an x/y speed
-    - [ ] Bubbles start at the top at a random x position
+  - [x] Player object moves left and right within canvas bounds using left/right button or left/right keyboard arrow keys
+  - [x] Create an array of bubble objects. Each has x, y, radius and an x/y speed
+    - [x] Bubbles start at the top at a random x position
     - [ ] Bubbles move downwards each frame
     - [ ] Bubble objects bounce off the left and right walls, and off the floor (reverse y direction)
     - [ ] Starts with one large bubble

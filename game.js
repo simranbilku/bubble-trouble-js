@@ -78,6 +78,27 @@ window.addEventListener("keyup", function (event) {
   }
 });
 
+const largeRadius = 60;
+const mediumRadius = 40;
+const smallRadius = 20;
+
+// generating random x position
+function randomXPosition() {
+  return (
+    Math.floor(Math.random() * (canvas.width - largeRadius + 1)) + largeRadius
+  );
+}
+
+const bubbles = [
+  {
+    x: randomXPosition(),
+    y: largeRadius,
+    radius: largeRadius,
+    xSpeed: 5,
+    ySpeed: 5,
+  },
+];
+
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
   if (buttonTracker.left) {
