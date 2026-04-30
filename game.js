@@ -93,8 +93,8 @@ const bubbles = [
     x: randomXPosition(),
     y: largeRadius,
     radius: largeRadius,
-    xSpeed: 5,
-    ySpeed: 5,
+    xSpeed: 1,
+    ySpeed: 3,
   },
 ];
 
@@ -113,13 +113,31 @@ function gameLoop() {
   if (buttonTracker.left) {
     player.x -= player.speed;
     if (player.x < 0) {
+      // if hit left wall
       player.x = 0;
     }
   }
   if (buttonTracker.right) {
     player.x += player.speed;
     if (player.x > canvas.width - player.width) {
+      // if hit right wall
       player.x = canvas.width - player.width;
+    }
+  }
+  for (let bubble of bubbles) {
+    bubble.y += bubble.ySpeed;
+    bubble.x += bubble.xSpeed;
+    if (
+      bubble.x - bubble.radius < 0 || // left wall
+      bubble.x + bubble.radius > canvas.width // right wall
+    ) {
+      bubble.xSpeed = -bubble.xSpeed;
+    }
+    if (
+      bubble.y + bubble.radius > canvas.height || // bottom of screen
+      bubble.y - bubble.radius < 0 // top of screen
+    ) {
+      bubble.ySpeed = -bubble.ySpeed;
     }
   }
   drawRectangle();
