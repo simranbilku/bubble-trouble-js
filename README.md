@@ -33,8 +33,8 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
   - [x] Player object moves left and right within canvas bounds using left/right button or left/right keyboard arrow keys
   - [x] Create an array of bubble objects. Each has x, y, radius and an x/y speed
     - [x] Bubbles start at the top at a random x position
-    - [ ] Bubbles move downwards each frame
-    - [ ] Bubble objects bounce off the left and right walls, and off the floor (reverse y direction)
+    - [x] Bubbles move downwards each frame
+    - [x] Bubble objects bounce off the left and right walls, and off the floor (reverse y direction)
     - [x] Starts with one large bubble
   - [ ] When shoot button/space is pressed, create a laser at player's x position that travels upwards
     - [ ] Remove laser when it hits the top

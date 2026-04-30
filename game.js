@@ -30,6 +30,7 @@ function drawRectangle() {
 const buttonTracker = {
   left: false,
   right: false,
+  shoot: false,
 };
 
 const left = document.getElementById("leftBtn");
@@ -78,6 +79,34 @@ window.addEventListener("keyup", function (event) {
   }
 });
 
+const shoot = document.getElementById("shootBtn");
+shoot.addEventListener("mousedown", function () {
+  buttonTracker.shoot = true;
+});
+shoot.addEventListener("mouseup", function () {
+  buttonTracker.shoot = false;
+});
+shoot.addEventListener("touchstart", function () {
+  buttonTracker.shoot = true;
+});
+shoot.addEventListener("touchend", function () {
+  buttonTracker.shoot = false;
+});
+
+window.addEventListener("keydown", function (event) {
+  if (event.key === " ") {
+    buttonTracker.shoot = true;
+    event.preventDefault();
+  }
+});
+
+window.addEventListener("keyup", function (event) {
+  if (event.key === " ") {
+    buttonTracker.shoot = false;
+    event.preventDefault();
+  }
+});
+
 const largeRadius = 60;
 const mediumRadius = 40;
 const smallRadius = 20;
@@ -94,7 +123,7 @@ const bubbles = [
     y: largeRadius,
     radius: largeRadius,
     xSpeed: 1,
-    ySpeed: 3,
+    ySpeed: 3.5,
   },
 ];
 
@@ -106,6 +135,20 @@ function drawBubbles() {
     ctx.lineWidth = 2;
     ctx.stroke();
   });
+}
+
+const laser = {
+  active: false,
+  x: player.x + player.width / 2,
+};
+
+function drawLaser() {
+  ctx.beginPath(); // begin path
+  ctx.moveTo(player.x + player.width / 2, player.y); // move to a point
+  ctx.lineTo(player.x + player.width / 2, 0); // draw in the path, x-axis coordinate of line's end point, y-axis coordinate of line's end point
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke(); // draw the path
 }
 
 function gameLoop() {
@@ -139,6 +182,14 @@ function gameLoop() {
     ) {
       bubble.ySpeed = -bubble.ySpeed;
     }
+  }
+  if (buttonTracker.shoot) {
+    laser.active = true;
+  } else {
+    laser.active = false;
+  }
+  if (laser.active) {
+    drawLaser();
   }
   drawRectangle();
   drawBubbles();
