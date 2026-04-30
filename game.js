@@ -82,7 +82,6 @@ const largeRadius = 60;
 const mediumRadius = 40;
 const smallRadius = 20;
 
-// generating random x position
 function randomXPosition() {
   return (
     Math.floor(Math.random() * (canvas.width - largeRadius + 1)) + largeRadius
@@ -99,6 +98,16 @@ const bubbles = [
   },
 ];
 
+function drawBubbles() {
+  bubbles.forEach(function (bubble) {
+    ctx.beginPath();
+    ctx.arc(bubble.x, bubble.y, bubble.radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+}
+
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
   if (buttonTracker.left) {
@@ -114,6 +123,7 @@ function gameLoop() {
     }
   }
   drawRectangle();
+  drawBubbles();
   requestAnimationFrame(gameLoop);
 }
 requestAnimationFrame(gameLoop);
