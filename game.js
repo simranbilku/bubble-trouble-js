@@ -151,7 +151,20 @@ function drawLaser() {
   ctx.stroke(); // draw the path
 }
 
+function displayGameOver() {
+  ctx.font = "50px Arial";
+  ctx.fillStyle = "Red";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
+}
+
+let gameOver = false;
+
 function gameLoop() {
+  if (gameOver) {
+    return;
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
   if (buttonTracker.left) {
     player.x -= player.speed;
@@ -244,6 +257,26 @@ function gameLoop() {
       return true;
     });
     bubbles = bubbles.concat(newBubbles);
+  }
+  for (let bubble of bubbles) {
+    // circle rectangle collision
+    // finding the closest x coordinate on the rectangle to the circle's center
+    let closestX = Math.max(
+      player.x,
+      Math.min(bubble.x, player.x + player.width),
+    );
+    // finding the closest y coordinate on rectangle to circle's center
+    let closestY = Math.max(
+      player.y,
+      Math.min(bubble.y, player.y + player.height),
+    );
+    let dx = bubble.x - closestX; // horizontal distance from circle center to closest point
+    let dy = bubble.y - closestY; // vertical distance from circle center to closest point
+    if (dx * dx + dy * dy <= bubble.radius * bubble.radius) {
+      displayGameOver();
+      gameOver = true;
+      break;
+    }
   }
   drawRectangle();
   drawBubbles();

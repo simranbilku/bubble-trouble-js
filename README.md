@@ -47,11 +47,11 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
       - [x] Large bubble -> hits laser -> two mediums
       - [x] Medium bubble -> hits laser -> two smalls
       - [x] Small bubble -> hits laser -> gone
-  - [ ] Check if any bubble's circle overlaps the player's rectangle.
-    - [ ] If so, display "Game over!" text
-    - [ ] Player movement is stopped
-    - [ ] Player shooting is stopped
-    - [ ] Bubbles no longer fall
+  - [x] Check if any bubble's circle overlaps the player's rectangle.
+    - [x] If so, display "Game over!" text
+    - [x] Player movement is stopped
+    - [x] Player shooting is stopped
+    - [x] Bubbles no longer fall
   - [ ] Display the score as text on the canvas each frame
   - [ ] If the bubbles array is empty, the player has cleared the screen
     - [ ] Display "You Won!" text
