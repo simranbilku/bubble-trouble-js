@@ -17,7 +17,7 @@ const player = {
 
 player.x = (canvas.width - player.width) / 2;
 player.y = canvas.height - player.height;
-player.speed = 3;
+player.speed = 5;
 
 function drawRectangle() {
   ctx.beginPath();
@@ -188,26 +188,44 @@ function gameLoop() {
   } else {
     laser.active = false;
   }
+  let newBubbles = [];
+  let hitOccured = false;
   if (laser.active) {
     laser.x = player.x + player.width / 2;
     drawLaser();
-  }
-  if (laser.active) {
     bubbles = bubbles.filter((bubble) => {
       if (
+        !hitOccured &&
         laser.x > bubble.x - bubble.radius &&
         laser.x < bubble.x + bubble.radius
       ) {
+        buttonTracker.shoot = false;
+        hitOccured = true;
+        laser.active = false;
+        const mediumBubbleOne = {
+          x: laser.x,
+          y: mediumRadius,
+          radius: mediumRadius,
+          xSpeed: 4,
+          ySpeed: 3.5,
+        };
+        const mediumBubbleTwo = {
+          x: laser.x,
+          y: mediumRadius,
+          radius: mediumRadius,
+          xSpeed: -4,
+          ySpeed: 3.5,
+        };
+        newBubbles.push(mediumBubbleOne);
+        newBubbles.push(mediumBubbleTwo);
         return false;
       }
       return true;
     });
+    bubbles = bubbles.concat(newBubbles);
   }
   drawRectangle();
   drawBubbles();
   requestAnimationFrame(gameLoop);
 }
 requestAnimationFrame(gameLoop);
-
-// Each frame, check if the laser overlaps any bubble circle
-//If it does, remove that bubble and replace it with two smaller bubbles bouncing in opposite directions
