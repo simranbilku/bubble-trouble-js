@@ -42,11 +42,11 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
   - [x] Each frame, check if the laser overlaps any bubble circle
     - [x] If it does, remove that bubble and replace it with two smaller bubbles bouncing in opposite directions
     - [ ] Add a point
-    - [ ] Set minimum bubble size (small)
-      - [ ] When a bubble below that size is hit, the bubble disappears
-      - [ ] Large bubble -> hits laser -> two mediums
-      - [ ] Medium bubble -> hits laser -> two smalls
-      - [ ] Small bubble -> hits laser -> gone
+    - [x] Set minimum bubble size (small)
+      - [x] When a bubble below that size is hit, the bubble disappears
+      - [x] Large bubble -> hits laser -> two mediums
+      - [x] Medium bubble -> hits laser -> two smalls
+      - [x] Small bubble -> hits laser -> gone
   - [ ] Check if any bubble's circle overlaps the player's rectangle.
     - [ ] If so, display "Game over!" text
     - [ ] Player movement is stopped

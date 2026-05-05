@@ -204,20 +204,41 @@ function gameLoop() {
         laser.active = false;
         const mediumBubbleOne = {
           x: laser.x,
-          y: mediumRadius,
+          y: bubble.y,
           radius: mediumRadius,
-          xSpeed: 4,
+          xSpeed: 3,
           ySpeed: 3.5,
         };
         const mediumBubbleTwo = {
           x: laser.x,
-          y: mediumRadius,
+          y: bubble.y,
           radius: mediumRadius,
+          xSpeed: -3,
+          ySpeed: 3.5,
+        };
+        const smallBubbleOne = {
+          x: laser.x,
+          y: bubble.y,
+          radius: smallRadius,
+          xSpeed: 4,
+          ySpeed: 3.5,
+        };
+        const smallBubbleTwo = {
+          x: laser.x,
+          y: bubble.y,
+          radius: smallRadius,
           xSpeed: -4,
           ySpeed: 3.5,
         };
-        newBubbles.push(mediumBubbleOne);
-        newBubbles.push(mediumBubbleTwo);
+        if (bubble.radius == largeRadius) {
+          newBubbles.push(mediumBubbleOne);
+          newBubbles.push(mediumBubbleTwo);
+        } else if (bubble.radius == mediumRadius) {
+          newBubbles.push(smallBubbleOne);
+          newBubbles.push(smallBubbleTwo);
+        } else {
+          return false;
+        }
         return false;
       }
       return true;
