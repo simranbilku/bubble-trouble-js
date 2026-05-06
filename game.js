@@ -107,6 +107,47 @@ window.addEventListener("keyup", function (event) {
   }
 });
 
+let gameOver = false;
+
+const restart = document.getElementById("restartBtn");
+restart.addEventListener("mousedown", function () {
+  const wasGameOver = gameOver;
+  gameOver = false;
+  player.x = (canvas.width - player.width) / 2;
+  bubbles = [
+    {
+      x: randomXPosition(),
+      y: largeRadius,
+      radius: largeRadius,
+      xSpeed: 1,
+      ySpeed: 3.5,
+    },
+  ];
+  score = 0;
+  laser.active = false;
+  if (wasGameOver) {
+    requestAnimationFrame(gameLoop);
+  }
+});
+restart.addEventListener("touchstart", function () {
+  gameOver = false;
+  player.x = (canvas.width - player.width) / 2;
+  bubbles = [
+    {
+      x: randomXPosition(),
+      y: largeRadius,
+      radius: largeRadius,
+      xSpeed: 1,
+      ySpeed: 3.5,
+    },
+  ];
+  score = 0;
+  laser.active = false;
+  if (wasGameOver) {
+    requestAnimationFrame(gameLoop);
+  }
+});
+
 const largeRadius = 60;
 const mediumRadius = 40;
 const smallRadius = 20;
@@ -175,8 +216,6 @@ function displayScore() {
   ctx.textAlign = "left";
   ctx.fillText(`score: ${score}`, 20, 30);
 }
-
-let gameOver = false;
 
 function gameLoop() {
   if (gameOver) {
@@ -276,6 +315,11 @@ function gameLoop() {
     });
     bubbles = bubbles.concat(newBubbles);
   }
+  if (bubbles.length === 0) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    displayYouWin();
+    gameOver = true;
+  }
   for (let bubble of bubbles) {
     // circle rectangle collision
     // finding the closest x coordinate on the rectangle to the circle's center
@@ -295,11 +339,6 @@ function gameLoop() {
       gameOver = true;
       break;
     }
-  }
-  if (bubbles.length === 0) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    displayYouWin();
-    gameOver = true;
   }
   drawRectangle();
   drawBubbles();
