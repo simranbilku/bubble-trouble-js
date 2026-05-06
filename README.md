@@ -41,7 +41,7 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
     - [x] Player can only have one laser at a time
   - [x] Each frame, check if the laser overlaps any bubble circle
     - [x] If it does, remove that bubble and replace it with two smaller bubbles bouncing in opposite directions
-    - [ ] Add a point
+    - [x] Add a point
     - [x] Set minimum bubble size (small)
       - [x] When a bubble below that size is hit, the bubble disappears
       - [x] Large bubble -> hits laser -> two mediums
@@ -52,7 +52,7 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
     - [x] Player movement is stopped
     - [x] Player shooting is stopped
     - [x] Bubbles no longer fall
-  - [ ] Display the score as text on the canvas each frame
+  - [x] Display the score as text on the canvas each frame
   - [x] If the bubbles array is empty, the player has cleared the screen
     - [x] Display "You Won!" text
     - [x] Player movement is stopped

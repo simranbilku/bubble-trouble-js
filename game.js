@@ -167,6 +167,15 @@ function displayYouWin() {
   ctx.fillText("You Win!", canvas.width / 2, canvas.height / 2);
 }
 
+let score = 0;
+
+function displayScore() {
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "Black";
+  ctx.textAlign = "left";
+  ctx.fillText(`score: ${score}`, 20, 30);
+}
+
 let gameOver = false;
 
 function gameLoop() {
@@ -223,6 +232,7 @@ function gameLoop() {
         buttonTracker.shoot = false;
         hitOccured = true;
         laser.active = false;
+        score += 1;
         const mediumBubbleOne = {
           x: laser.x,
           y: bubble.y,
@@ -293,6 +303,7 @@ function gameLoop() {
   }
   drawRectangle();
   drawBubbles();
+  displayScore();
   requestAnimationFrame(gameLoop);
 }
 requestAnimationFrame(gameLoop);
