@@ -53,9 +53,9 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
     - [x] Player shooting is stopped
     - [x] Bubbles no longer fall
   - [ ] Display the score as text on the canvas each frame
-  - [ ] If the bubbles array is empty, the player has cleared the screen
-    - [ ] Display "You Won!" text
-    - [ ] Player movement is stopped
-    - [ ] Player shooting is stopped
-    - [ ] Bubbles no longer fall
+  - [x] If the bubbles array is empty, the player has cleared the screen
+    - [x] Display "You Won!" text
+    - [x] Player movement is stopped
+    - [x] Player shooting is stopped
+    - [x] Bubbles no longer fall
   - [ ] Restart button resets all variables and starts the loop again

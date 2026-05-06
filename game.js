@@ -159,6 +159,14 @@ function displayGameOver() {
   ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
 }
 
+function displayYouWin() {
+  ctx.font = "50px Arial";
+  ctx.fillStyle = "Black";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("You Win!", canvas.width / 2, canvas.height / 2);
+}
+
 let gameOver = false;
 
 function gameLoop() {
@@ -219,28 +227,28 @@ function gameLoop() {
           x: laser.x,
           y: bubble.y,
           radius: mediumRadius,
-          xSpeed: 3,
+          xSpeed: 1,
           ySpeed: 3.5,
         };
         const mediumBubbleTwo = {
           x: laser.x,
           y: bubble.y,
           radius: mediumRadius,
-          xSpeed: -3,
+          xSpeed: -1,
           ySpeed: 3.5,
         };
         const smallBubbleOne = {
           x: laser.x,
           y: bubble.y,
           radius: smallRadius,
-          xSpeed: 4,
+          xSpeed: 1,
           ySpeed: 3.5,
         };
         const smallBubbleTwo = {
           x: laser.x,
           y: bubble.y,
           radius: smallRadius,
-          xSpeed: -4,
+          xSpeed: -1,
           ySpeed: 3.5,
         };
         if (bubble.radius == largeRadius) {
@@ -277,6 +285,11 @@ function gameLoop() {
       gameOver = true;
       break;
     }
+  }
+  if (bubbles.length === 0) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    displayYouWin();
+    gameOver = true;
   }
   drawRectangle();
   drawBubbles();
