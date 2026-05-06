@@ -11,19 +11,72 @@ window.addEventListener("resize", function () {
 // adjusts canvas size in case of device rotation or windows resize
 
 const player = {
-  width: 40,
-  height: 100,
+  width: 35,
+  height: 80,
 };
+
+const largeRadius = 60;
+const mediumRadius = 40;
+const smallRadius = 20;
+/* 
+const bubbleParam = {
+  x: randomXPosition(),
+  y: 60,
+  smallRadius: 20,
+  mediumRadius: 40,
+  largeRadius: 60,
+  xSpeed: 1,
+  ySpeed: 1.5,
+}; */
 
 player.x = (canvas.width - player.width) / 2;
 player.y = canvas.height - player.height;
 player.speed = 5;
 
-function drawRectangle() {
+function drawStickman() {
+  // body
   ctx.beginPath();
-  ctx.rect(player.x, player.y, player.width, player.height);
-  ctx.strokeStyle = "black";
-  ctx.lineWidth = 2;
+  ctx.moveTo(player.x + player.width / 2, player.y + player.width / 2);
+  ctx.lineTo(
+    player.x + player.width / 2,
+    player.y + player.width / 2 + player.height / 2,
+  );
+  ctx.stroke();
+  // head
+  ctx.moveTo(player.x + player.width / 2, player.y + player.width);
+  ctx.beginPath();
+  ctx.arc(
+    player.x + player.width / 2,
+    player.y,
+    player.width / 2,
+    0,
+    2 * Math.PI,
+  );
+  // left leg
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(
+    player.x + player.width / 2,
+    player.y + player.width / 2 + player.height / 2,
+  );
+  ctx.lineTo(player.x, player.y + player.height);
+  ctx.stroke();
+  // right leg
+  ctx.moveTo(
+    player.x + player.width / 2,
+    player.y + player.width / 2 + player.height / 2,
+  );
+  ctx.lineTo(player.x + player.width, player.y + player.height);
+  ctx.stroke();
+  // left arm
+  ctx.beginPath();
+  ctx.moveTo(player.x + player.width / 2, player.y + player.height / 2.5);
+  ctx.lineTo(player.x, player.y + player.height / 1.8);
+  ctx.stroke();
+  // right arm
+  ctx.beginPath();
+  ctx.moveTo(player.x + player.width / 2, player.y + player.height / 2.5);
+  ctx.lineTo(player.x + player.width, player.y + player.height / 1.8);
   ctx.stroke();
 }
 
@@ -118,7 +171,7 @@ restart.addEventListener("mousedown", function () {
   player.x = (canvas.width - player.width) / 2;
   bubbles = [
     {
-      x: randomXPosition(),
+      x: randomXPosition(canvas.width, largeRadius),
       y: largeRadius,
       radius: largeRadius,
       xSpeed: 1,
@@ -137,11 +190,11 @@ restart.addEventListener("touchstart", function () {
   player.x = (canvas.width - player.width) / 2;
   bubbles = [
     {
-      x: randomXPosition(),
+      x: randomXPosition(canvas.width, largeRadius),
       y: largeRadius,
       radius: largeRadius,
       xSpeed: 1,
-      ySpeed: 3.5,
+      ySpeed: 1.5,
     },
   ];
   score = 0;
@@ -158,11 +211,11 @@ start.addEventListener("mousedown", function () {
   player.x = (canvas.width - player.width) / 2;
   bubbles = [
     {
-      x: randomXPosition(),
+      x: randomXPosition(canvas.width, largeRadius),
       y: largeRadius,
       radius: largeRadius,
       xSpeed: 1,
-      ySpeed: 3.5,
+      ySpeed: 1.5,
     },
   ];
   score = 0;
@@ -175,19 +228,13 @@ start.addEventListener("mousedown", function () {
   requestAnimationFrame(gameLoop);
 });
 
-const largeRadius = 60;
-const mediumRadius = 40;
-const smallRadius = 20;
-
-function randomXPosition() {
-  return (
-    Math.floor(Math.random() * (canvas.width - largeRadius + 1)) + largeRadius
-  );
+function randomXPosition(width, radius) {
+  return Math.floor(Math.random() * (width - radius + 1)) + radius;
 }
 
 let bubbles = [
   {
-    x: randomXPosition(),
+    x: randomXPosition(canvas.width, largeRadius),
     y: largeRadius,
     radius: largeRadius,
     xSpeed: 1,
@@ -367,7 +414,7 @@ function gameLoop() {
       break;
     }
   }
-  drawRectangle();
+  drawStickman();
   drawBubbles();
   displayScore();
   requestAnimationFrame(gameLoop);
