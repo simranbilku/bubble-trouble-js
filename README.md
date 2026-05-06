@@ -11,7 +11,8 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
 - [x] Shoot button
 - [x] Left movement button
 - [x] Right movement button
-- [ ] Restart button
+- [x] Restart button
+- [x] Start Button
 - [x] Bubble Trouble Title
 
 ## CSS
@@ -58,4 +59,5 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
     - [x] Player movement is stopped
     - [x] Player shooting is stopped
     - [x] Bubbles no longer fall
-  - [ ] Restart button resets all variables and starts the loop again
+  - [x] Restart button resets all variables and starts the loop again
+  - [x] Start button begins gameloop

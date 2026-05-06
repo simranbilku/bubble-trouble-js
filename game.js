@@ -31,6 +31,7 @@ const buttonTracker = {
   left: false,
   right: false,
   shoot: false,
+  start: false,
 };
 
 const left = document.getElementById("leftBtn");
@@ -108,6 +109,7 @@ window.addEventListener("keyup", function (event) {
 });
 
 let gameOver = false;
+let gameStarted = false;
 
 const restart = document.getElementById("restartBtn");
 restart.addEventListener("mousedown", function () {
@@ -130,6 +132,7 @@ restart.addEventListener("mousedown", function () {
   }
 });
 restart.addEventListener("touchstart", function () {
+  const wasGameOver = gameOver;
   gameOver = false;
   player.x = (canvas.width - player.width) / 2;
   bubbles = [
@@ -146,6 +149,30 @@ restart.addEventListener("touchstart", function () {
   if (wasGameOver) {
     requestAnimationFrame(gameLoop);
   }
+});
+
+const start = document.getElementById("startBtn");
+start.addEventListener("mousedown", function () {
+  gameStarted = true;
+  gameOver = false;
+  player.x = (canvas.width - player.width) / 2;
+  bubbles = [
+    {
+      x: randomXPosition(),
+      y: largeRadius,
+      radius: largeRadius,
+      xSpeed: 1,
+      ySpeed: 3.5,
+    },
+  ];
+  score = 0;
+  laser.active = false;
+  start.classList.add("hidden");
+  left.classList.remove("hidden");
+  right.classList.remove("hidden");
+  shoot.classList.remove("hidden");
+  restart.classList.remove("hidden");
+  requestAnimationFrame(gameLoop);
 });
 
 const largeRadius = 60;
@@ -218,7 +245,7 @@ function displayScore() {
 }
 
 function gameLoop() {
-  if (gameOver) {
+  if (gameOver || !gameStarted) {
     return;
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
