@@ -1,23 +1,24 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const isMobile = window.innerWidth < 480;
 
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.height = window.innerHeight - 175;
 
 window.addEventListener("resize", function () {
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.height = window.innerHeight - 175;
 });
 // adjusts canvas size in case of device rotation or windows resize
 
 const player = {
-  width: 35,
-  height: 80,
+  width: isMobile ? 25 : 40,
+  height: isMobile ? 60 : 100,
 };
 
-const largeRadius = 60;
-const mediumRadius = 40;
-const smallRadius = 20;
+const largeRadius = isMobile ? 30 : 60;
+const mediumRadius = isMobile ? 20 : 40;
+const smallRadius = isMobile ? 10 : 20;
 /* 
 const bubbleParam = {
   x: randomXPosition(),
@@ -34,6 +35,10 @@ player.y = canvas.height - player.height;
 player.speed = 5;
 
 function drawStickman() {
+  ctx.strokeStyle = "#ffffff";
+  ctx.shadowColor = "#ffffff";
+  ctx.shadowBlur = 10;
+  ctx.lineWidth = 2;
   // body
   ctx.beginPath();
   ctx.moveTo(player.x + player.width / 2, player.y + player.width / 2);
@@ -78,6 +83,8 @@ function drawStickman() {
   ctx.moveTo(player.x + player.width / 2, player.y + player.height / 2.5);
   ctx.lineTo(player.x + player.width, player.y + player.height / 1.8);
   ctx.stroke();
+
+  ctx.shadowBlur = 0;
 }
 
 const buttonTracker = {
@@ -229,7 +236,7 @@ start.addEventListener("mousedown", function () {
 });
 
 function randomXPosition(width, radius) {
-  return Math.floor(Math.random() * (width - radius + 1)) + radius;
+  return Math.floor(Math.random() * (width - radius * 3)) + radius * 2;
 }
 
 let bubbles = [
@@ -246,7 +253,8 @@ function drawBubbles() {
   bubbles.forEach(function (bubble) {
     ctx.beginPath();
     ctx.arc(bubble.x, bubble.y, bubble.radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = "black";
+    ctx.fillStyle = "#39ff14";
+    ctx.fill();
     ctx.lineWidth = 2;
     ctx.stroke();
   });
@@ -259,43 +267,55 @@ const laser = {
 
 function drawLaser() {
   ctx.beginPath(); // begin path
-  ctx.moveTo(player.x + player.width / 2, player.y); // move to a point
+  ctx.moveTo(player.x + player.width / 2, player.y - player.width / 2); // move to a point
   ctx.lineTo(player.x + player.width / 2, 0); // draw in the path, x-axis coordinate of line's end point, y-axis coordinate of line's end point
-  ctx.strokeStyle = "black";
+  ctx.strokeStyle = "#ff0055";
   ctx.lineWidth = 2;
   ctx.stroke(); // draw the path
 }
 
 function displayGameOver() {
-  ctx.font = "50px Arial";
-  ctx.fillStyle = "Red";
+  ctx.font = `bold ${isMobile ? "30px" : "50px"} 'Courier New'`;
+  ctx.fillStyle = "#ff0055";
+  ctx.shadowColor = "#ff0055";
+  ctx.shadowBlur = 20;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
+  ctx.shadowBlur = 0;
 }
 
 function displayYouWin() {
-  ctx.font = "50px Arial";
-  ctx.fillStyle = "Black";
+  ctx.font = `bold ${isMobile ? "30px" : "50px"} 'Courier New'`;
+  ctx.fillStyle = "#ffffff";
+  ctx.shadowColor = "#ffffff";
+  ctx.shadowBlur = 20;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText("You Win!", canvas.width / 2, canvas.height / 2);
+  ctx.shadowBlur = 0;
 }
 
 let score = 0;
 
 function displayScore() {
-  ctx.font = "20px Arial";
-  ctx.fillStyle = "Black";
+  ctx.font = "bold 20px 'Courier New'";
+  ctx.fillStyle = "#ff0055";
+  ctx.lineWidth = 2;
+  ctx.shadowColor = "#ff0055";
+  ctx.lineWidth = 2;
+  ctx.shadowBlur = 10;
   ctx.textAlign = "left";
-  ctx.fillText(`score: ${score}`, 20, 30);
+  ctx.fillText(`Score: ${score}`, 20, 30);
+  ctx.shadowBlur = 0;
 }
 
 function gameLoop() {
   if (gameOver || !gameStarted) {
     return;
   }
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
+  ctx.fillStyle = "#0a0a1a";
+  ctx.fillRect(0, 0, canvas.width, canvas.height); // clears canvas
   if (buttonTracker.left) {
     player.x -= player.speed;
     if (player.x < 0) {
@@ -390,7 +410,8 @@ function gameLoop() {
     bubbles = bubbles.concat(newBubbles);
   }
   if (bubbles.length === 0) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0a0a1a";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     displayYouWin();
     gameOver = true;
   }

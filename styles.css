@@ -24,6 +24,7 @@ h1 {
   margin-top: 30px;
   margin-bottom: 10px;
   text-shadow: 0 0 10px #39ff14;
+  letter-spacing: 8px;
 }
 
 .controls {
@@ -64,6 +65,7 @@ button {
 }
 
 #restartBtn {
+  background-color: #ffff00;
   position: fixed;
   top: 20px;
   right: 20px;
@@ -74,7 +76,42 @@ button {
   margin-top: 10px;
 }
 
-/* Background: #0a0a1a
-Accents: #39ff14 (neon green)
-Text/stickman: #ffffff
-Laser: #ff0000 or #ffff00 */
+#shootBtn {
+  background-color: #ff0055;
+}
+
+#leftBtn {
+  background-color: #ff0055;
+}
+
+#rightBtn {
+  background-color: #ff0055;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    margin-top: 10px;
+  }
+
+  button {
+    width: 55px;
+    height: 55px;
+    font-size: 1.2rem;
+  }
+
+  #restartBtn {
+    width: 60px;
+    height: 30px;
+    font-size: 0.7rem;
+    top: 10px;
+    right: 10px;
+  }
+
+  #startBtn {
+    width: 150px;
+    height: 50px;
+    font-size: 1rem;
+  }
+}
