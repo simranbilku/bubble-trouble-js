@@ -17,11 +17,11 @@ A stickman stands at the bottom of the screen. Bubbles fall from the top. If one
 
 ## CSS
 
-- [ ] Dark background
-- [ ] Centered canvas
-- [ ] Buttons positioned at the bottom of screen
-- [ ] Button Styling
-- [ ] White Text
+- [x] Dark background
+- [x] Centered canvas
+- [x] Buttons positioned at the bottom of screen
+- [x] Button Styling
+- [x] Green Title Text
 
 ## JS Logic
 
