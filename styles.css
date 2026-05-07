@@ -7,3 +7,25 @@
 .hidden {
   display: none;
 }
+
+body {
+  background-color: #0a0a1a;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Courier New", monospace;
+}
+
+h1 {
+  color: #39ff14;
+  font-size: 2rem;
+  margin: 10px 0;
+  text-shadow: 0 0 10px #39ff14;
+}
+
+/* Background: #0a0a1a
+Accents: #39ff14 (neon green)
+Text/stickman: #ffffff
+Laser: #ff0000 or #ffff00 */
